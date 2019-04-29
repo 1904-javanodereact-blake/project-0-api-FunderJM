@@ -7,14 +7,14 @@ import { User } from '../build/dist/model/user';
 export const userRouter = express.Router();
 
 userRouter.get('', [
-    authMiddleware(['Finance Manager']),
+    authMiddleware(['Finance Manager', 'Admin']),
     async (req, res) => {
         const result = await allUsers();
         res.json(result.rows);
     }
 ]);
 
-userRouter.get('/:id', authMiddleware(['Finance Manager']), async (req, res) => {
+userRouter.get('/:id', authMiddleware(['Finance Manager', 'Admin']), async (req, res) => {
     console.log('finding user with id' + req.params.id);
     const id: number = +req.params.id;
     const employee = await findByUserId(id);
@@ -44,7 +44,7 @@ userRouter.post('/login', async (req, res) => {
 });
 
 
-userRouter.patch('', async (req, res) => {
+userRouter.patch('', authMiddleware(['Admin']), async (req, res) => {
     const bod = req.body;
     const tempUser = new User( undefined, undefined, undefined, undefined, undefined, undefined, undefined);
     for (const field in tempUser) {

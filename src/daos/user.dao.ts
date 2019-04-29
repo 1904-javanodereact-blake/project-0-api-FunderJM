@@ -74,38 +74,44 @@ export async function updateUser (userId: number, username: string, password: st
     try {
         client = await connectionPool.connect();
         if (username !== null) {
-            const query = `UPDATE TABLE project0.employee (username)
-            VALUE ($2) WHERE employee.userid = $1;`;
+            console.log(username);
+            const query = `UPDATE project0.employee
+            SET username = $2 WHERE employee.userid = $1;`;
             const result = await client.query(query, [userId, username]);
             return result;
         }
         if (password !== null) {
-            const query = `UPDATE TABLE project0.employee (password)
-            VALUE ($2) WHERE employee.userid = $1;`;
+            console.log(password);
+            const query = `UPDATE project0.employee
+            SET password = $2 WHERE employee.userid = $1;`;
             const result = await client.query(query, [userId, password]);
             return result;
         }
         if (firstname !== null) {
-            const query = `UPDATE TABLE project0.employee (firstname)
-            VALUE ($2) WHERE employee.userid = $1;`;
+            console.log(firstname);
+            const query = `UPDATE project0.employee
+            SET firstname = $2 WHERE employee.userid = $1;`;
             const result = await client.query(query, [userId, firstname]);
             return result;
         }
         if (lastname !== null) {
-            const query = `UPDATE TABLE project0.employee (lastname)
-            VALUE ($2) WHERE employee.userid = $1;`;
+            console.log(lastname);
+            const query = `UPDATE project0.employee
+            SET lastname = $2 WHERE employee.userid = $1;`;
             const result = await client.query(query, [userId, lastname]);
             return result;
         }
         if (email !== null) {
-            const query = `UPDATE TABLE project0.employee (email)
-            VALUE ($2) WHERE employee.userid = $1;`;
+            console.log(email);
+            const query = `UPDATE project0.employee
+            SET email = $2 WHERE employee.userid = $1;`;
             const result = await client.query(query, [userId, email]);
             return result;
         }
         if (emprole !== null) {
-            const query = `UPDATE TABLE project0.employee (emprole)
-            VALUE ($2) WHERE employee.userid = $1;`;
+            console.log(emprole);
+            const query = `UPDATE project0.employee
+            SET emprole = $2 WHERE employee.userid = $1;`;
             const result = await client.query(query, [userId, emprole]);
             return result;
         }

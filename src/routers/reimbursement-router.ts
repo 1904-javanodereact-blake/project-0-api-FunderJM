@@ -1,5 +1,6 @@
 import express from 'express';
 import { findAllRequestByUserId, findAllRequestByStatusId, createNewRequest, updateRequest } from '../daos/reimbursement.dao';
+import { authMiddleware } from '../middleware/auth.middleware';
 export const reimbursementRouter = express.Router();
 
 reimbursementRouter.get(`/author/userId/:userId`, async (req, res) => {
@@ -38,7 +39,7 @@ reimbursementRouter.post(`/reimbursements`, [ async (req, res) => {
     }
 }]);
 
-reimbursementRouter.patch(``, async (req, res) => {
+reimbursementRouter.patch(``, authMiddleware(['Finance Manager', 'Admin']), async (req, res) => {
     const reimburseId = req.body.reimbursementid;
     const dateresolved = req.body.dateresolved;
     const resolver = req.body.resolver;
