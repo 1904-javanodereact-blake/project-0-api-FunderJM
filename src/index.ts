@@ -5,7 +5,7 @@ import { sessionMiddleware } from './middleware/session.middleware';
 import { reimbursementRouter } from './routers/reimbursement-router';
 
 const app = express();
-const port = process.env.PORT || 8080;
+export const port = process.env.PORT || 8080;
 
 app.use((req, res, next) => {
   console.log(`request made with url: ${req.url} and method: ${req.method}`);
