@@ -10,7 +10,7 @@ async function login(event) {
   };
 
   try {
-    const resp = await fetch('http://localhost:5500/users/login',{
+    const resp = await fetch('http://localhost:8080/users/login',{
       method: 'POST',
       credentials: 'include',
       body: JSON.stringify(credentials),

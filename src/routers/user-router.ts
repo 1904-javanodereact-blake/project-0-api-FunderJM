@@ -26,12 +26,10 @@ userRouter.get('/:id', authMiddleware(['Finance Manager', 'Admin']), async (req,
 });
 
 userRouter.post('/login', async (req, res) => {
-    console.log(req.body);
     if (req.body) {
         const username = req.body.username;
         const password = req.body.password;
         const attempt = await findByUsernameAndPassword(username, password);
-        console.log(attempt);
         if (attempt) {
             req.session.user = attempt;
             res.json(attempt);
