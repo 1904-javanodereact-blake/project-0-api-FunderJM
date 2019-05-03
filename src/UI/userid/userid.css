@@ -1,0 +1,11 @@
+#userid-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+#ship-nav {
+  margin-bottom: 2.5em;
+}

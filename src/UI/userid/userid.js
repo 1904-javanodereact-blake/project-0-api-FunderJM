@@ -1,15 +1,12 @@
+async function finduser(event) {
+  event.preventDefault();
 
-async function loadUsers() {
-  const currentUserString = localStorage.getItem('currentUser');
-  const currentUser = JSON.parse(currentUserString);
+  const id = document.getElementById('user-id-input').value;
+  const resp = await fetch('localhost:8080/users/' + id);
+  const user = await resp.json();
 
-  const response = await fetch('http://localhost:8080/users', {
-    credentials: 'include'
-  });
-  if (response.status === 200) {
-    const allUsers = await response.json();
-    populateEmployees(allUsers);
-  }
+  const pokemonNameElement = document.getElementById('user-name');
+  pokemonNameElement.innerText = user.firstname;
 }
 
 function populateEmployees(users) {
@@ -85,14 +82,4 @@ function populateEmployees(users) {
   //     </div>
 }
 
-loadUsers();
-
-// async function deleteShip(id, shipCard) {
-//   const response = await fetch('http://localhost:8080/spaceships/' + id, {
-//     credentials: 'include',
-//     method: 'DELETE'
-//   });
-//   if(response.status === 200) {
-//     shipCard.parentNode.removeChild(shipCard)
-//   }
-// }
+findUser();

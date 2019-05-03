@@ -1,22 +1,21 @@
 
-async function loadShips() {
-  const destatus = 1;
+async function loadReimbursements() {
   const currentUserString = localStorage.getItem('currentUser');
   const currentUser = JSON.parse(currentUserString);
 
   const response = await fetch('http://localhost:8080/reimbursements/author/userId/' + currentUser.userId, {
     credentials: 'include'
   });
+  console.log(currentUser.userId);
   if (response.status === 200) {
-    const ships = await response.json();
-    console.log(ships);
-    populatePageShips(ships);
+    const reimbursements = await response.json();
+    populatePageReimbursements(reimbursements);
   }
 }
 
-function populatePageShips(ships) {
+function populatePageReimbursements(reimburse) {
 
-  const shipElements = ships.map(ship => {
+  const ReimbursementElements = reimburse.map(reimburse => {
     const card = document.createElement('div');
     
     card.classList = 'card col-md-4 col-sm-6 col-xs-12';
@@ -32,7 +31,7 @@ function populatePageShips(ships) {
 
     const cardTitle = document.createElement('h5');
     cardTitle.classList = 'card-title';
-    cardTitle.innerText = ship.name;
+    cardTitle.innerText = reimburse.reimbursementid;
     cardBody.appendChild(cardTitle);
 
 
@@ -40,35 +39,35 @@ function populatePageShips(ships) {
     cardData.classList = 'list-group list-group-flush';
     card.appendChild(cardData);
 
-    const speed = document.createElement('li');
-    speed.classList = 'list-group-item';
-    speed.innerText = 'Speed: ' + ship.speed;
-    cardData.appendChild(speed);
+    const amount = document.createElement('li');
+    amount.classList = 'list-group-item';
+    amount.innerText = 'Amount: ' + reimburse.amount;
+    cardData.appendChild(amount);
 
-    const weight = document.createElement('li');
-    weight.classList = 'list-group-item';
-    weight.innerText = 'Weight: ' + ship.weight;
-    cardData.appendChild(weight);
+    const dateSubmitted = document.createElement('li');
+    dateSubmitted.classList = 'list-group-item';
+    dateSubmitted.innerText = 'Date Submitted: ' + reimburse.dateSubmitted;
+    cardData.appendChild(dateSubmitted);
 
     const description = document.createElement('li');
     description.classList = 'list-group-item';
-    description.innerText = 'Description: ' + ship.description;
+    description.innerText = 'Description: ' + reimburse.description;
     cardData.appendChild(description);
 
-    const deleteItem = document.createElement('li');
-    deleteItem.classList = 'list-group-item';
-    const deleteButton = document.createElement('button');
-    deleteButton.classList = 'btn btn-dark';
-    deleteButton.addEventListener('click', () => deleteShip(ship.shipId, card));
-    deleteButton.innerText = 'Delete';
-    deleteItem.appendChild(deleteButton);
-    cardData.appendChild(deleteItem);
+    // const deleteItem = document.createElement('li');
+    // deleteItem.classList = 'list-group-item';
+    // const deleteButton = document.createElement('button');
+    // deleteButton.classList = 'btn btn-dark';
+    // deleteButton.addEventListener('click', () => deleteShip(ship.shipId, card));
+    // deleteButton.innerText = 'Delete';
+    // deleteItem.appendChild(deleteButton);
+    // cardData.appendChild(deleteItem);
     
     return card;
   });
 
-  // const shipContainer = document.getElementById('ship-container');
-  // shipContainer.append(...shipElements);
+  const ReimbursementContainer = document.getElementById('reimbursement-container');
+  ReimbursementContainer.append(...ReimbursementElements);
 
   // <div class="card col-md-4 col-sm-6 col-xs-12">
   //   <img src="https://thenewswheel.com/wp-content/uploads/2018/05/Millennium-Falcon-760x428.jpg" class="card-img-top"
@@ -87,14 +86,14 @@ function populatePageShips(ships) {
   //     </div>
 }
 
-loadShips();
+loadReimbursements();
 
-async function deleteShip(id, shipCard) {
-  const response = await fetch('http://localhost:8080/spaceships/' + id, {
-    credentials: 'include',
-    method: 'DELETE'
-  });
-  if(response.status === 200) {
-    shipCard.parentNode.removeChild(shipCard)
-  }
-}
+// async function deleteShip(id, shipCard) {
+//   const response = await fetch('http://localhost:8080/spaceships/' + id, {
+//     credentials: 'include',
+//     method: 'DELETE'
+//   });
+//   if(response.status === 200) {
+//     shipCard.parentNode.removeChild(shipCard)
+//   }
+// }
