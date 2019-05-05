@@ -1,20 +1,21 @@
-async function findUser(event) {
+async function findreimbursement(event) {
   event.preventDefault();
-  const id = document.getElementById('user-id-input').value;
-  const currentUserString = localStorage.getItem('currentUser');
-  const currentUser = JSON.parse(currentUserString);
+  const id = document.getElementById('reimbursement-id-input').value;
+  const currentreimbursementString = localStorage.getItem('currentreimbursement');
+  const currentreimbursement = JSON.parse(currentreimbursementString);
 
-  const response = await fetch('http://localhost:8080/users/' + id, {
+  const response = await fetch('http://localhost:8080/reimbursements/status/' + id, {
     credentials: 'include'
   });
   if (response.status === 200) {
-    const thisUser = await response.json();
-    populateEmployee(thisUser);
+    const reimbursements = await response.json();
+    populateReimbursements(reimbursements);
   }
 }
 
-function populateEmployee(user) {
+function populateReimbursements(reimbursement) {
 
+  const reimbursementElements = reimbursement.map(reimbursement => {
     const card = document.createElement('div');
     
     card.classList = 'card col-md-4 col-sm-6 col-xs-12';
@@ -28,10 +29,10 @@ function populateEmployee(user) {
     cardBody.classList = 'card-body';
     card.appendChild(cardBody);
 
-    const cardUsername = document.createElement('h5');
-    cardUsername.classList = 'card-username';
-    cardUsername.innerText = user.userid;
-    cardBody.appendChild(cardUsername);
+    const cardreimbursementname = document.createElement('h5');
+    cardreimbursementname.classList = 'card-reimbursementname';
+    cardreimbursementname.innerText = reimbursement.reimbursementid;
+    cardBody.appendChild(cardreimbursementname);
 
 
     const cardData = document.createElement('ul');
@@ -40,17 +41,17 @@ function populateEmployee(user) {
 
     const firstName = document.createElement('li');
     firstName.classList = 'list-group-item';
-    firstName.innerText = 'Firstname: ' + user.firstname;
+    firstName.innerText = 'Firstname: ' + reimbursement.firstname;
     cardData.appendChild(firstName);
 
     const lastName = document.createElement('li');
     lastName.classList = 'list-group-item';
-    lastName.innerText = 'Lastname: ' + user.lastname;
+    lastName.innerText = 'Lastname: ' + reimbursement.lastname;
     cardData.appendChild(lastName);
 
     const email = document.createElement('li');
     email.classList = 'list-group-item';
-    email.innerText = 'Description: ' + user.email;
+    email.innerText = 'Description: ' + reimbursement.email;
     cardData.appendChild(email);
 
     // const deleteItem = document.createElement('li');
@@ -61,11 +62,14 @@ function populateEmployee(user) {
     // deleteButton.innerText = 'Delete';
     // deleteItem.appendChild(deleteButton);
     // cardData.appendChild(deleteItem);
+
+    return card;
+  });
     
 
-  const employeeContainer = document.getElementById('employee-container');
-  employeeContainer.innerHTML = '';
-  employeeContainer.append(card);
+  const reimbursementIdContainer = document.getElementById('reimbursement-container');
+  reimbursementIdContainer.innerHTML = '';
+  reimbursementIdContainer.append(...reimbursementElements);
 
   // <div class="card col-md-4 col-sm-6 col-xs-12">
   //   <img src="https://thenewswheel.com/wp-content/uploads/2018/05/Millennium-Falcon-760x428.jpg" class="card-img-top"
@@ -84,4 +88,4 @@ function populateEmployee(user) {
   //     </div>
 }
 
-findUser();
+findreimbursement();
