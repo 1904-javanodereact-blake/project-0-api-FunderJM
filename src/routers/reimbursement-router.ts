@@ -25,7 +25,7 @@ reimbursementRouter.get(`/status/:statusId`, async (req, res) => {
     }
 });
 
-reimbursementRouter.post(`/reimbursements`, [ async (req, res) => {
+reimbursementRouter.post(``, [ async (req, res) => {
     const author = req.body.author;
     const reimburseAmount = req.body.amount;
     const todaysDate = req.body.datesubmitted;

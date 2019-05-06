@@ -65,6 +65,7 @@ export async function updateRequest(reimbursementid: number, dateresolved: numbe
         SET dateresolved = $2, resolver = $3, status = $4
         WHERE reimbursementid = $1;`;
         const result = await client.query(queryString, [reimbursementid, dateresolved, resolver, status]);
+        console.log(result);
         const reimburse = result.rows[0];
         return reimburse;
     } catch (err) {

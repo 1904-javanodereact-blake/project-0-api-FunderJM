@@ -54,14 +54,14 @@ function populateReimbursements(reimburse) {
     description.innerText = 'Description: ' + reimburse.description;
     cardData.appendChild(description);
 
-    // const deleteItem = document.createElement('li');
-    // deleteItem.classList = 'list-group-item';
+    // const approveItem = document.createElement('li');
+    // approveItem.classList = 'list-group-item';
     // const deleteButton = document.createElement('button');
-    // deleteButton.classList = 'btn btn-dark';
-    // deleteButton.addEventListener('click', () => deleteShip(ship.shipId, card));
-    // deleteButton.innerText = 'Delete';
-    // deleteItem.appendChild(deleteButton);
-    // cardData.appendChild(deleteItem);
+    // approveButton.classList = 'btn btn-dark';
+    // approveButton.addEventListener('click', () => approveReimburse(reimburse.reimburseId, card));
+    // approveButton.innerText = 'Delete';
+    // approveItem.appendChild(approveButton);
+    // cardData.appendChild(approveItem);
     
     return card;
   });
@@ -71,21 +71,7 @@ function populateReimbursements(reimburse) {
   reimbursementIdContainer.innerHTML = '';
   reimbursementIdContainer.append(...ReimbursementElements);
 
-  // <div class="card col-md-4 col-sm-6 col-xs-12">
-  //   <img src="https://thenewswheel.com/wp-content/uploads/2018/05/Millennium-Falcon-760x428.jpg" class="card-img-top"
-  //     alt="...">
-  //     <div class="card-body">
-  //       <h5 class="card-title">Ship Name</h5>
-  //     </div>
-  //     <ul class="list-group list-group-flush">
-  //       <li class="list-group-item">Speed: 32412</li>
-  //       <li class="list-group-item">Weight: 3124312</li>
-  //       <li class="list-group-item">Description: dlsa;jf;asdlkfjsda lksdalkfjsdlkfj</li>
-  //       <li class="list-group-item">
-  //         <button class="btn btn-danger">Delete</button>
-  //       </li>
-  //     </ul>
-  //     </div>
+ 
 }
 
 findreimbursement();
