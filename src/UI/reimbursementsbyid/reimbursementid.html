@@ -33,8 +33,7 @@
               <div class="dropdown-menu" aria-labelledby="dropdown04">
                   <a class="dropdown-item" href="../users/users.html">All Users</a>
                 <a class="dropdown-item" href="../userid/userid.html">User by Id</a>
-                
-                <a class="dropdown-item" href="#">Something else here</a>
+                <a class="dropdown-item" href="../updateusers/userupdate.html">Update User</a>
               </div>
             </li>
             <li class="nav-item active">
@@ -42,9 +41,8 @@
                 aria-expanded="false">Reimbursements<span class="sr-only">(current)</span></a>
               <div class="dropdown-menu" aria-labelledby="dropdown04">
                   <a class="dropdown-item" href="../reimbursements/reimbursements.html">Your Reimbursements<span class="sr-only">(current)</span></a>
-                <a class="dropdown-item" href="../reimbursementsbyid/reimbursementid.html">Reimbursement by Status Id</a>
-                
-                <a class="dropdown-item" href="#">Something else here</a>
+                <a class="dropdown-item" href="../reimbursementsbyid/reimbursementid.html">Reimbursement by Status Id</a>                
+                <a class="dropdown-item" href="../submitreimbursement/submitreimbursement.html">Submit new Reimbursement</a>
               </div>
             </li>
           </ul>
@@ -59,7 +57,7 @@
   <form id="reimbursement-id-form" onsubmit="findreimbursement(event)">
     <div class="form-group">
       <label for="reimbursementid-input">Reimbursement by Status Id:</label>
-      <input type="number" class="form-control" id="reimbursment-id-input" aria-describedby="emailHelp" placeholder="Enter Reimbursement Status Id">
+      <input type="number" class="form-control" id="reimbursement-id-input" aria-describedby="emailHelp" placeholder="Enter Reimbursement Status Id">
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>

@@ -13,9 +13,9 @@ async function findreimbursement(event) {
   }
 }
 
-function populateReimbursements(reimbursement) {
+function populateReimbursements(reimburse) {
 
-  const reimbursementElements = reimbursement.map(reimbursement => {
+  const ReimbursementElements = reimburse.map(reimburse => {
     const card = document.createElement('div');
     
     card.classList = 'card col-md-4 col-sm-6 col-xs-12';
@@ -29,30 +29,30 @@ function populateReimbursements(reimbursement) {
     cardBody.classList = 'card-body';
     card.appendChild(cardBody);
 
-    const cardreimbursementname = document.createElement('h5');
-    cardreimbursementname.classList = 'card-reimbursementname';
-    cardreimbursementname.innerText = reimbursement.reimbursementid;
-    cardBody.appendChild(cardreimbursementname);
+    const cardTitle = document.createElement('h5');
+    cardTitle.classList = 'card-title';
+    cardTitle.innerText = reimburse.reimbursementid;
+    cardBody.appendChild(cardTitle);
 
 
     const cardData = document.createElement('ul');
     cardData.classList = 'list-group list-group-flush';
     card.appendChild(cardData);
 
-    const firstName = document.createElement('li');
-    firstName.classList = 'list-group-item';
-    firstName.innerText = 'Firstname: ' + reimbursement.firstname;
-    cardData.appendChild(firstName);
+    const amount = document.createElement('li');
+    amount.classList = 'list-group-item';
+    amount.innerText = 'Amount: ' + reimburse.amount;
+    cardData.appendChild(amount);
 
-    const lastName = document.createElement('li');
-    lastName.classList = 'list-group-item';
-    lastName.innerText = 'Lastname: ' + reimbursement.lastname;
-    cardData.appendChild(lastName);
+    const dateSubmitted = document.createElement('li');
+    dateSubmitted.classList = 'list-group-item';
+    dateSubmitted.innerText = 'Date Submitted: ' + reimburse.dateSubmitted;
+    cardData.appendChild(dateSubmitted);
 
-    const email = document.createElement('li');
-    email.classList = 'list-group-item';
-    email.innerText = 'Description: ' + reimbursement.email;
-    cardData.appendChild(email);
+    const description = document.createElement('li');
+    description.classList = 'list-group-item';
+    description.innerText = 'Description: ' + reimburse.description;
+    cardData.appendChild(description);
 
     // const deleteItem = document.createElement('li');
     // deleteItem.classList = 'list-group-item';
@@ -62,14 +62,14 @@ function populateReimbursements(reimbursement) {
     // deleteButton.innerText = 'Delete';
     // deleteItem.appendChild(deleteButton);
     // cardData.appendChild(deleteItem);
-
+    
     return card;
   });
     
 
   const reimbursementIdContainer = document.getElementById('reimbursement-container');
   reimbursementIdContainer.innerHTML = '';
-  reimbursementIdContainer.append(...reimbursementElements);
+  reimbursementIdContainer.append(...ReimbursementElements);
 
   // <div class="card col-md-4 col-sm-6 col-xs-12">
   //   <img src="https://thenewswheel.com/wp-content/uploads/2018/05/Millennium-Falcon-760x428.jpg" class="card-img-top"
